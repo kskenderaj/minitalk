@@ -6,7 +6,7 @@
 /*   By: kskender <kskender@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 22:03:41 by kskender          #+#    #+#             */
-/*   Updated: 2025/07/05 15:48:32 by kskender         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:49:11 by kskender         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@
 
 typedef struct s_server
 {
-	unsigned char	c;
-	int				bit_count;
-	pid_t			client_pid;
-	char			*buffer;
-	size_t			buff_size;
-	size_t			buff_capacity;
-	unsigned long	msg_size;
-}					t_server;
+	char	current_char;
+	int		bit_count;
+	pid_t	client_pid;
+	char	*message;
+	size_t	msg_len;
+	size_t	msg_capacity;
+}			t_server;
 
 #endif
