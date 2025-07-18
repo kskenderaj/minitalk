@@ -6,7 +6,7 @@
 /*   By: kskender <kskender@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 15:14:51 by kskender          #+#    #+#             */
-/*   Updated: 2025/07/14 20:46:35 by kskender         ###   ########.fr       */
+/*   Updated: 2025/07/18 11:16:16 by kskender         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ static void	handle_char(t_server *s)
 {
 	char	*new_msg;
 
-	// Check if we need to allocate more space
 	if (s->msg_len >= s->msg_capacity)
 	{
-		s->msg_capacity += 1024; // Allocate in chunks
+		s->msg_capacity += 1024;
 		new_msg = realloc(s->message, s->msg_capacity);
 		if (!new_msg)
 		{
@@ -40,9 +39,7 @@ static void	handle_char(t_server *s)
 		}
 		s->message = new_msg;
 	}
-	// Store the character
 	s->message[s->msg_len++] = s->current_char;
-	// Check for end of message
 	if (s->current_char == '\0')
 	{
 		write(STDOUT_FILENO, s->message, s->msg_len);
@@ -63,13 +60,10 @@ static void	sig_handler(int sig, siginfo_t *info, void *context)
 	(void)context;
 	if (s.client_pid == 0 || s.client_pid != info->si_pid)
 		init_server(&s, info->si_pid);
-	// Build the current character bit by bit
 	s.current_char = (s.current_char << 1) | (sig == SIGUSR2);
 	s.bit_count++;
-	// When we have a full byte (8 bits)
 	if (s.bit_count == 8)
 		handle_char(&s);
-	// Send ACK
 	if (kill(s.client_pid, SIGUSR1) == -1)
 		ft_putstr_fd("Warning:  Failed to send ACK\n", STDERR_FILENO);
 }
