@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kskender <kskender@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 22:03:41 by kskender          #+#    #+#             */
-/*   Updated: 2025/07/20 16:38:56 by kskender         ###   ########.fr       */
+/*   Created: 2025/03/17 17:41:06 by kskender          #+#    #+#             */
+/*   Updated: 2025/03/17 17:41:28 by kskender         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "../include/reallibft/libft.h"
-# include "realf/ft_printf.h"
-# include <signal.h>
-# include <unistd.h>
-
-typedef struct s_server
+char	*ft_strdup(const char *src)
 {
-	char	current_char;
-	int		bit_count;
-	pid_t	client_pid;
-	char	*message;
-	size_t	msg_len;
-	size_t	msg_capacity;
-}			t_server;
+	char	*str;
+	int		buff_size;
 
-#endif
+	buff_size = (ft_strlen(src) + 1);
+	str = malloc(buff_size);
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, src, buff_size);
+	return (str);
+}

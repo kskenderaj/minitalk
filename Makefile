@@ -6,7 +6,7 @@
 #    By: kskender <kskender@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/28 15:13:13 by kskender          #+#    #+#              #
-#    Updated: 2025/06/30 13:45:06 by kskender         ###   ########.fr        #
+#    Updated: 2025/07/20 16:41:29 by kskender         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 SRCD = src
 OBJD = obj
-LIBFT = include/libft/libft.a
-PRINTF = include/printf/libftprintf.a
+LIBFT = include/reallibft/libft.a
+PRINTF = include/realf/libftprintf.a
 
 # Colors
 GREEN = \033[0;32m
@@ -36,10 +36,10 @@ SERVER_OBJ = $(OBJD)/server.o
 all: $(NAME_CLIENT) $(NAME_SERVER)
 
 $(LIBFT):
-	@make -C include/libft
+	@make -C include/reallibft
 
 $(PRINTF):
-	@make -C include/printf
+	@make -C include/realf
 
 $(OBJD):
 	@mkdir -p $(OBJD)
@@ -53,23 +53,23 @@ $(SERVER_OBJ): $(SRCD)/server.c | $(OBJD)
 	@$(CC) $(CFLAGS) -Iinclude -c $< -o $@
 
 $(NAME_CLIENT): $(CLIENT_OBJ) $(LIBFT) $(PRINTF)
-	@$(CC) $(CFLAGS) $< -Linclude/libft -Linclude/printf -lft -lftprintf -o $@
+	@$(CC) $(CFLAGS) $< -Linclude/reallibft -Linclude/realf -lft -lftprintf -o $@
 	@printf "$(GREEN)Client built!$(NC)\n"
 
 $(NAME_SERVER): $(SERVER_OBJ) $(LIBFT) $(PRINTF)
-	@$(CC) $(CFLAGS) $< -Linclude/libft -Linclude/printf -lft -lftprintf -o $@
+	@$(CC) $(CFLAGS) $< -Linclude/reallibft -Linclude/realf -lft -lftprintf -o $@
 	@printf "$(GREEN)Server built!$(NC)\n"
 
 clean:
 	@printf "$(RED)Cleaning...$(NC)\n"
 	@rm -rf $(OBJD)
-	@make -C include/libft clean
-	@make -C include/printf clean
+	@make -C include/reallibft clean
+	@make -C include/realf clean
 
 fclean: clean
 	@rm -f $(NAME_CLIENT) $(NAME_SERVER)
-	@make -C include/libft fclean
-	@make -C include/printf fclean
+	@make -C include/reallibft fclean
+	@make -C include/realf fclean
 
 re: fclean all
 

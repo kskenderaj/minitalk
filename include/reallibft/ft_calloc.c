@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kskender <kskender@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 22:03:41 by kskender          #+#    #+#             */
-/*   Updated: 2025/07/20 16:38:56 by kskender         ###   ########.fr       */
+/*   Created: 2025/03/13 16:02:57 by kskender          #+#    #+#             */
+/*   Updated: 2025/03/18 16:32:37 by kskender         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "../include/reallibft/libft.h"
-# include "realf/ft_printf.h"
-# include <signal.h>
-# include <unistd.h>
-
-typedef struct s_server
+void	*ft_calloc(size_t nmele, size_t size)
 {
-	char	current_char;
-	int		bit_count;
-	pid_t	client_pid;
-	char	*message;
-	size_t	msg_len;
-	size_t	msg_capacity;
-}			t_server;
+	size_t	bytes;
+	size_t	i;
+	void	*ptr;
 
-#endif
+	bytes = nmele * size;
+	if (size && (bytes / size != nmele))
+		return (NULL);
+	ptr = malloc(bytes);
+	if (ptr == NULL)
+		return (NULL);
+	i = 0;
+	while (i < bytes)
+	{
+		((unsigned char *)ptr)[i] = 0;
+		i++;
+	}
+	return (ptr);
+}

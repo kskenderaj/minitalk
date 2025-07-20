@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kskender <kskender@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 22:03:41 by kskender          #+#    #+#             */
-/*   Updated: 2025/07/20 16:38:56 by kskender         ###   ########.fr       */
+/*   Created: 2025/03/14 15:03:44 by kskender          #+#    #+#             */
+/*   Updated: 2025/03/14 17:25:52 by kskender         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "../include/reallibft/libft.h"
-# include "realf/ft_printf.h"
-# include <signal.h>
-# include <unistd.h>
-
-typedef struct s_server
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	current_char;
-	int		bit_count;
-	pid_t	client_pid;
-	char	*message;
-	size_t	msg_len;
-	size_t	msg_capacity;
-}			t_server;
+	unsigned char	*str;
+	size_t			i;
+	unsigned char	uc;
 
-#endif
+	str = (unsigned char *) s;
+	uc = (unsigned char) c;
+	i = 0;
+	while (i < n)
+	{
+		if (str[i] == uc)
+			return ((void *) &str[i]);
+		i++;
+	}
+	return (NULL);
+}

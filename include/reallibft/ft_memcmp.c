@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kskender <kskender@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 22:03:41 by kskender          #+#    #+#             */
-/*   Updated: 2025/07/20 16:38:56 by kskender         ###   ########.fr       */
+/*   Created: 2025/03/15 14:04:35 by kskender          #+#    #+#             */
+/*   Updated: 2025/03/15 16:20:47 by kskender         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "../include/reallibft/libft.h"
-# include "realf/ft_printf.h"
-# include <signal.h>
-# include <unistd.h>
-
-typedef struct s_server
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	current_char;
-	int		bit_count;
-	pid_t	client_pid;
-	char	*message;
-	size_t	msg_len;
-	size_t	msg_capacity;
-}			t_server;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-#endif
+	str1 = (unsigned char *) s1;
+	str2 = (unsigned char *) s2;
+	i = 0;
+	while (i < n)
+	{
+		if ((unsigned char) str1[i] != (unsigned char) str2[i])
+			return ((unsigned char) str1[i] - (unsigned char) str2[i]);
+		i++;
+	}
+	return (0);
+}

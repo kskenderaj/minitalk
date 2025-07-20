@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kskender <kskender@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 22:03:41 by kskender          #+#    #+#             */
-/*   Updated: 2025/07/20 16:38:56 by kskender         ###   ########.fr       */
+/*   Created: 2025/03/12 14:23:17 by kskender          #+#    #+#             */
+/*   Updated: 2025/03/12 14:23:50 by kskender         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "../include/reallibft/libft.h"
-# include "realf/ft_printf.h"
-# include <signal.h>
-# include <unistd.h>
-
-typedef struct s_server
+void	ft_bzero(void *a, size_t c)
 {
-	char	current_char;
-	int		bit_count;
-	pid_t	client_pid;
-	char	*message;
-	size_t	msg_len;
-	size_t	msg_capacity;
-}			t_server;
+	size_t	i;
+	char	*ptr;
 
-#endif
+	ptr = (char *)a;
+	i = 0;
+	while (i < c)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+}

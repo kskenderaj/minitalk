@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kskender <kskender@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 22:03:41 by kskender          #+#    #+#             */
-/*   Updated: 2025/07/20 16:38:56 by kskender         ###   ########.fr       */
+/*   Created: 2025/03/15 14:04:39 by kskender          #+#    #+#             */
+/*   Updated: 2025/03/18 17:45:19 by kskender         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "../include/reallibft/libft.h"
-# include "realf/ft_printf.h"
-# include <signal.h>
-# include <unistd.h>
-
-typedef struct s_server
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char	current_char;
-	int		bit_count;
-	pid_t	client_pid;
-	char	*message;
-	size_t	msg_len;
-	size_t	msg_capacity;
-}			t_server;
+	unsigned char		*tmp_dst;
+	const unsigned char	*tmp_src;
 
-#endif
+	if (!dest && !src)
+		return (NULL);
+	tmp_dst = (unsigned char *)dest;
+	tmp_src = (const unsigned char *)src;
+	while (n > 0)
+	{
+		*tmp_dst = *tmp_src;
+		tmp_dst++;
+		tmp_src++;
+		n--;
+	}
+	return (dest);
+}

@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kskender <kskender@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 22:03:41 by kskender          #+#    #+#             */
-/*   Updated: 2025/07/20 16:38:56 by kskender         ###   ########.fr       */
+/*   Created: 2025/03/14 13:44:20 by kskender          #+#    #+#             */
+/*   Updated: 2025/03/18 17:49:07 by kskender         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "../include/reallibft/libft.h"
-# include "realf/ft_printf.h"
-# include <signal.h>
-# include <unistd.h>
-
-typedef struct s_server
+char	*ft_strrchr(const char *s, int c)
 {
-	char	current_char;
-	int		bit_count;
-	pid_t	client_pid;
-	char	*message;
-	size_t	msg_len;
-	size_t	msg_capacity;
-}			t_server;
+	unsigned int	i;
+	unsigned char	cc;
+	char			*res;
 
-#endif
+	cc = (unsigned char) c;
+	i = 0;
+	res = NULL;
+	while (s[i])
+	{
+		if (s[i] == cc)
+			res = (char *) &s[i];
+		i++;
+	}
+	if (s[i] == cc)
+	{
+		res = (char *) &s[i];
+	}
+	return (res);
+}
